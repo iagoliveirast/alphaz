@@ -6,7 +6,6 @@
     <title>Manual do Adolescente - por Alpha Z</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Importando fontes com a estética do projeto -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Gochi+Hand&display=swap" rel="stylesheet">
     <style>
         /* --- Estilos Gerais e Cores do Projeto --- */
@@ -22,7 +21,7 @@
 
         body {
             background-color: var(--off-white-bg);
-            font-family: 'Gochi Hand', cursive; /* Fonte que simula a "Genty" */
+            font-family: 'Gochi Hand', cursive;
             margin: 0;
             color: var(--dark-text);
         }
@@ -30,56 +29,47 @@
         /* --- Cabeçalho e Logo Animada --- */
         .main-header {
             background-color: var(--hot-pink);
-            padding: 50px 20px; /* Aumentei mais o padding para dar mais altura */
+            padding: 50px 20px;
             text-align: center;
             border-bottom: 5px solid var(--dark-text);
         }
 
         .logo-container {
-            /* A animação acontece aqui */
             animation: pulse-effect 2.5s infinite ease-in-out;
         }
 
         .logo-image {
             max-width: 90%;
             height: auto;
-            width: 500px; /* Aumentei a largura da logo */
+            width: 500px;
         }
 
-        /* Animação de pulsar/piscar para a logo */
         @keyframes pulse-effect {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.03);
-                filter: drop-shadow(0 0 15px var(--purple));
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); filter: drop-shadow(0 0 15px var(--purple)); }
+            100% { transform: scale(1); }
         }
 
-        /* --- Layout Principal do Blog --- */
-        .container {
-            display: flex;
-            flex-direction: column; /* Empilha em telas pequenas */
+        /* --- Layout Principal e de Posts --- */
+        .container, .post-full-container {
             width: 95%;
             max-width: 1200px;
             margin: 2rem auto;
             gap: 2rem;
         }
-
-        /* Em telas maiores, usa o layout de colunas */
-        @media (min-width: 768px) {
-            .container {
-                flex-direction: row;
-            }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
         }
 
-        /* --- Coluna de Posts --- */
+        @media (min-width: 768px) {
+            .container { flex-direction: row; }
+        }
+
+        /* --- Coluna de Posts (Página Inicial) --- */
         .posts-container {
-            flex: 3; /* Ocupa mais espaço */
+            flex: 3;
         }
 
         .post-card {
@@ -87,7 +77,7 @@
             border: 3px solid var(--dark-text);
             border-radius: 15px;
             margin-bottom: 2.5rem;
-            box-shadow: 10px 10px 0px var(--purple); /* Sombra roxa, bem Y2K */
+            box-shadow: 10px 10px 0px var(--purple);
             overflow: hidden;
             transition: transform 0.2s, box-shadow 0.2s;
         }
@@ -108,7 +98,7 @@
         }
 
         .post-title {
-            font-family: 'Anton', sans-serif; /* Fonte de impacto para títulos */
+            font-family: 'Anton', sans-serif;
             font-size: 2.8rem;
             margin: 0 0 1rem 0;
             color: var(--dark-text);
@@ -129,6 +119,7 @@
             text-decoration: none;
             font-family: 'Anton', sans-serif;
             margin-top: 1rem;
+            cursor: pointer;
             transition: background-color 0.2s;
         }
 
@@ -138,7 +129,7 @@
 
         /* --- Barra Lateral (Sidebar) --- */
         .sidebar {
-            flex: 1; /* Ocupa menos espaço */
+            flex: 1;
         }
 
         .sidebar-widget {
@@ -182,17 +173,19 @@
             font-size: 1.6rem;
             line-height: 2.5;
             font-weight: bold;
+            cursor: pointer;
         }
         .category-list li a:hover {
             text-decoration: underline;
         }
         
+        /* --- Formulário de Perguntas --- */
         .question-form p {
             font-size: 1.1rem;
         }
 
         .question-form textarea {
-            width: 95%;
+            width: calc(100% - 26px);
             height: 100px;
             border-radius: 8px;
             border: 3px solid var(--dark-text);
@@ -220,6 +213,83 @@
             background-color: var(--purple);
         }
 
+        /* --- Estilos da Página de Post Completo --- */
+        .post-full {
+            background-color: #fff;
+            border: 3px solid var(--dark-text);
+            border-radius: 15px;
+            padding: 2rem 3rem;
+        }
+
+        .post-full-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 3.5rem;
+            text-align: center;
+            color: var(--hot-pink);
+        }
+
+        .post-full-image {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            border: 3px solid var(--dark-text);
+            margin: 1rem 0;
+        }
+
+        .post-full-content {
+            font-size: 1.4rem;
+            line-height: 1.8;
+        }
+        
+        /* --- Modal de Alerta Customizado --- */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--off-white-bg);
+            margin: auto;
+            padding: 30px;
+            border: 5px solid var(--dark-text);
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 10px 10px 0px var(--purple);
+            text-align: center;
+        }
+        
+        .modal-content h2 {
+            font-family: 'Anton', sans-serif;
+            margin-top: 0;
+        }
+        
+        .modal-content p {
+            font-size: 1.2rem;
+        }
+
+        .modal-close-btn {
+            background-color: var(--dark-text);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Anton', sans-serif;
+            font-size: 1rem;
+        }
+
     </style>
 </head>
 <body>
@@ -231,77 +301,168 @@
         </div>
     </header>
 
-    <!-- CONTEÚDO PRINCIPAL DO BLOG -->
-    <div class="container">
-
-        <!-- COLUNA DA ESQUERDA: POSTS -->
-        <main class="posts-container">
-
-            <!-- POST DE EXEMPLO 1 -->
-            <article class="post-card">
-                <div class="post-image" style="background-image: url('https://placehold.co/600x400/A5DC33/2b2b2b?text=Y2K');"></div>
-                <div class="post-content">
-                    <h2 class="post-title">O Caos Criativo da Geração Z</h2>
-                    <p class="post-excerpt">Escolhemos uma estética inspirada nos anos 2000, porque foi uma época marcante para a internet. Essa estética traz nostalgia, cores vibrantes e elementos exagerados que combinam com o caos criativo da adolescência.</p>
-                    <a href="#" class="read-more">Leia Mais &gt;</a>
+    <!-- PÁGINA PRINCIPAL - VISÍVEL POR PADRÃO -->
+    <div id="main-page">
+        <div class="container">
+            <!-- COLUNA DA ESQUERDA: POSTS -->
+            <main class="posts-container">
+                <!-- POST DE EXEMPLO 1 -->
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://placehold.co/600x400/A5DC33/2b2b2b?text=Y2K');"></div>
+                    <div class="post-content">
+                        <h2 class="post-title">O Caos Criativo da Geração Z</h2>
+                        <p class="post-excerpt">Escolhemos uma estética inspirada nos anos 2000, porque foi uma época marcante para a internet. Essa estética traz nostalgia, cores vibrantes e elementos exagerados que combinam com o caos criativo da adolescência.</p>
+                        <a class="read-more" onclick="showPage('post-page-1')">Leia Mais &gt;</a>
+                    </div>
+                </article>
+                <!-- POST DE EXEMPLO 2 -->
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://placehold.co/600x400/FFB904/2b2b2b?text=Estudos');"></div>
+                    <div class="post-content">
+                        <h2 class="post-title">Como Sobreviver à Semana de Provas</h2>
+                        <p class="post-excerpt">A pressão dos estudos é real, mas com um pouco de organização e as ferramentas certas, você consegue não apenas sobreviver, mas também brilhar. Vamos te mostrar como!</p>
+                        <a class="read-more" onclick="showPage('post-page-2')">Leia Mais &gt;</a>
+                    </div>
+                </article>
+                <!-- POST DE EXEMPLO 3 -->
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://placehold.co/600x400/36A8BC/2b2b2b?text=Amizade');"></div>
+                    <div class="post-content">
+                        <h2 class="post-title">Amizades na Era Digital: Conexões Reais</h2>
+                        <p class="post-excerpt">Entre DMs, grupos e stories, como cultivar amizades que vão além da tela? Exploramos os desafios e as alegrias de ser amigo na Geração Z.</p>
+                        <a class="read-more" onclick="showPage('post-page-3')">Leia Mais &gt;</a>
+                    </div>
+                </article>
+            </main>
+            <!-- COLUNA DA DIREITA: BARRA LATERAL -->
+            <aside class="sidebar">
+                <div class="sidebar-widget widget-about">
+                    <h3 class="widget-title">SOBRE OS ALPHA Z</h3>
+                    <p>Um grupo de mentes criativas navegando e explicando o universo adolescente. Nossa missão é transmitir autenticidade, leveza e conexão real. Bem-vindo ao nosso manual!</p>
                 </div>
-            </article>
-
-            <!-- POST DE EXEMPLO 2 -->
-            <article class="post-card">
-                <div class="post-image" style="background-image: url('https://placehold.co/600x400/FFB904/2b2b2b?text=Estudos');"></div>
-                <div class="post-content">
-                    <h2 class="post-title">Como Sobreviver à Semana de Provas</h2>
-                    <p class="post-excerpt">A pressão dos estudos é real, mas com um pouco de organização e as ferramentas certas, você consegue não apenas sobreviver, mas também brilhar. Vamos te mostrar como!</p>
-                    <a href="#" class="read-more">Leia Mais &gt;</a>
+                <div class="sidebar-widget widget-categories">
+                    <h3 class="widget-title">CATEGORIAS</h3>
+                    <ul class="category-list">
+                        <li><a onclick="showAlert('Funcionalidade em desenvolvimento!', 'Ainda estamos construindo a página de categorias. Em breve, você poderá ver todos os posts sobre Saúde Mental aqui!')">🧠 Saúde Mental</a></li>
+                        <li><a onclick="showAlert('Funcionalidade em desenvolvimento!', 'Ainda estamos construindo a página de categorias. Em breve, você poderá ver todos os posts sobre Vida Social aqui!')">🤝 Vida Social</a></li>
+                        <li><a onclick="showAlert('Funcionalidade em desenvolvimento!', 'Ainda estamos construindo a página de categorias. Em breve, você poderá ver todos os posts sobre Criatividade aqui!')">🎨 Criatividade</a></li>
+                        <li><a onclick="showAlert('Funcionalidade em desenvolvimento!', 'Ainda estamos construindo a página de categorias. Em breve, você poderá ver todos os posts sobre Futuro & Carreira aqui!')">🚀 Futuro & Carreira</a></li>
+                    </ul>
                 </div>
-            </article>
-
-            <!-- POST DE EXEMPLO 3 -->
-            <article class="post-card">
-                <div class="post-image" style="background-image: url('https://placehold.co/600x400/36A8BC/2b2b2b?text=Amizade');"></div>
-                <div class="post-content">
-                    <h2 class="post-title">Amizades na Era Digital: Conexões Reais</h2>
-                    <p class="post-excerpt">Entre DMs, grupos e stories, como cultivar amizades que vão além da tela? Exploramos os desafios e as alegrias de ser amigo na Geração Z.</p>
-                    <a href="#" class="read-more">Leia Mais &gt;</a>
+                <div class="sidebar-widget widget-question">
+                    <h3 class="widget-title">TEM ALGUMA PERGUNTA?</h3>
+                    <form class="question-form" onsubmit="submitForm(event)">
+                        <p>Mande sua dúvida pra gente!</p>
+                        <textarea name="pergunta" placeholder="Escreva sua pergunta aqui..." required></textarea>
+                        <button type="submit">ENVIAR</button>
+                    </form>
                 </div>
-            </article>
-
-        </main>
-
-        <!-- COLUNA DA DIREITA: BARRA LATERAL -->
-        <aside class="sidebar">
-
-            <!-- WIDGET SOBRE -->
-            <div class="sidebar-widget widget-about">
-                <h3 class="widget-title">SOBRE OS ALPHA Z</h3>
-                <p>Um grupo de mentes criativas navegando e explicando o universo adolescente. Nossa missão é transmitir autenticidade, leveza e conexão real. Bem-vindo ao nosso manual!</p>
-            </div>
-
-            <!-- WIDGET CATEGORIAS -->
-            <div class="sidebar-widget widget-categories">
-                <h3 class="widget-title">CATEGORIAS</h3>
-                <ul class="category-list">
-                    <li><a href="#">🧠 Saúde Mental</a></li>
-                    <li><a href="#">🤝 Vida Social</a></li>
-                    <li><a href="#">🎨 Criatividade</a></li>
-                    <li><a href="#">🚀 Futuro & Carreira</a></li>
-                </ul>
-            </div>
-            
-            <!-- WIDGET DE PERGUNTAS -->
-            <div class="sidebar-widget widget-question">
-                <h3 class="widget-title">TEM ALGUMA PERGUNTA?</h3>
-                <form class="question-form">
-                    <p>Mande sua dúvida pra gente!</p>
-                    <textarea placeholder="Escreva sua pergunta aqui..."></textarea>
-                    <button type="submit">ENVIAR</button>
-                </form>
-            </div>
-
-        </aside>
-
+            </aside>
+        </div>
     </div>
 
+    <!-- PÁGINAS DE POSTS COMPLETOS - ESCONDIDAS POR PADRÃO -->
+    <div id="post-page-1" class="post-full-container" style="display:none;">
+        <article class="post-full">
+            <a class="read-more" onclick="showPage('main-page')">&lt; Voltar para o Início</a>
+            <h1 class="post-full-title">O Caos Criativo da Geração Z</h1>
+            <div class="post-full-image" style="background-image: url('https://placehold.co/1200x400/A5DC33/2b2b2b?text=GERA%C3%87%C3%83O+Z');"></div>
+            <div class="post-full-content">
+                <p>Escolhemos uma estética inspirada nos anos 2000, porque foi uma época marcante para a internet e o nascimento dos blogs, vlogs e redes sociais – o que conversa diretamente com a nossa proposta de comunicação digital. Essa estética traz nostalgia, cores vibrantes, elementos exagerados e divertidos, que combinam com o caos criativo da adolescência e com o universo visual da Geração Z.</p>
+                <p>Navegar por este período da vida é como tentar montar um quebra-cabeça sem ver a imagem na caixa. É confuso, caótico, mas também incrivelmente criativo. Acreditamos que, ao abraçar essa confusão e encontrar beleza nela, podemos entender melhor a nós mesmos e ao mundo ao nosso redor. Este blog é um convite para explorar esse caos juntos.</p>
+            </div>
+        </article>
+    </div>
+
+    <div id="post-page-2" class="post-full-container" style="display:none;">
+        <article class="post-full">
+            <a class="read-more" onclick="showPage('main-page')">&lt; Voltar para o Início</a>
+            <h1 class="post-full-title">Como Sobreviver à Semana de Provas</h1>
+            <div class="post-full-image" style="background-image: url('https://placehold.co/1200x400/FFB904/2b2b2b?text=FOCO+TOTAL');"></div>
+            <div class="post-full-content">
+                <p>A pressão dos estudos é real, mas com um pouco de organização e as ferramentas certas, você consegue não apenas sobreviver, mas também brilhar. A primeira dica é: não deixe tudo para a última hora! Crie um cronograma de estudos realista, dividindo as matérias em blocos de tempo. Use aplicativos de organização ou uma simples agenda de papel.</p>
+                <p>Lembre-se também da importância das pausas. A técnica Pomodoro (25 minutos de estudo focado, 5 minutos de descanso) pode fazer maravilhas pela sua concentração. E o mais importante: cuide de você. Durma bem, alimente-se de forma saudável e reserve um tempo para fazer algo que você gosta. Sua saúde mental é tão importante quanto suas notas.</p>
+            </div>
+        </article>
+    </div>
+
+    <div id="post-page-3" class="post-full-container" style="display:none;">
+        <article class="post-full">
+            <a class="read-more" onclick="showPage('main-page')">&lt; Voltar para o Início</a>
+            <h1 class="post-full-title">Amizades na Era Digital: Conexões Reais</h1>
+            <div class="post-full-image" style="background-image: url('https://placehold.co/1200x400/36A8BC/2b2b2b?text=CONEX%C3%95ES');"></div>
+            <div class="post-full-content">
+                <p>Entre DMs, grupos e stories, como cultivar amizades que vão além da tela? Exploramos os desafios e as alegrias de ser amigo na Geração Z. A amizade digital é válida e poderosa, mas é crucial equilibrá-la com interações no mundo real. Chame seus amigos para um rolê, um passeio no parque ou simplesmente para conversar cara a cara.</p>
+                <p>A comunicação também é chave. Um emoji pode dizer muito, mas às vezes uma ligação ou uma conversa sincera pode resolver mal-entendidos que o texto não consegue. Lembre-se de ser um amigo presente, tanto online quanto offline. Ofereça apoio, comemore as vitórias e esteja lá nos momentos difíceis. Amizades verdadeiras são um dos maiores tesouros da vida, não importa a plataforma.</p>
+            </div>
+        </article>
+    </div>
+
+    <!-- MODAL DE ALERTA -->
+    <div id="customModal" class="custom-modal">
+        <div class="modal-content">
+            <h2 id="modalTitle"></h2>
+            <p id="modalMessage"></p>
+            <button class="modal-close-btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA DE NAVEGAÇÃO E INTERAÇÃO ---
+
+        const mainPage = document.getElementById('main-page');
+        const postPage1 = document.getElementById('post-page-1');
+        const postPage2 = document.getElementById('post-page-2');
+        const postPage3 = document.getElementById('post-page-3');
+        const modal = document.getElementById('customModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+
+        const pages = [mainPage, postPage1, postPage2, postPage3];
+
+        // Função para mostrar uma página e esconder as outras
+        function showPage(pageId) {
+            pages.forEach(page => {
+                if (page.id === pageId) {
+                    page.style.display = 'block';
+                } else {
+                    page.style.display = 'none';
+                }
+            });
+            window.scrollTo(0, 0); // Rola para o topo da página
+        }
+        
+        // --- Funções do Modal ---
+        function showAlert(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+        
+        // --- Função do Formulário ---
+        function submitForm(event) {
+            event.preventDefault(); // Impede o recarregamento da página
+            const textarea = event.target.querySelector('textarea');
+            if (textarea.value.trim() !== '') {
+                showAlert('Pergunta Enviada!', 'Obrigado! Recebemos sua pergunta e responderemos em breve.');
+                textarea.value = ''; // Limpa o campo de texto
+            } else {
+                 showAlert('Ops!', 'Você precisa escrever uma pergunta antes de enviar.');
+            }
+        }
+
+        // Fechar modal se clicar fora dele
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+    </script>
 </body>
 </html>
+
