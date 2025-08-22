@@ -16,7 +16,7 @@
             --ocean-blue: #36A8BC;
             --orange: #FFB904;
             --dark-text: #2b2b2b;
-            --off-white-bg: #FFFFFF; /* Alterado de volta para branco */
+            --off-white-bg: #FFFFFF;
         }
 
         body {
@@ -58,10 +58,6 @@
             max-width: 1200px;
             margin: 2rem auto;
             gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .container { flex-direction: row; }
         }
 
         /* --- Coluna de Posts (Página Inicial) --- */
@@ -223,6 +219,8 @@
             background-color: rgba(0,0,0,0.6);
             justify-content: center;
             align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
         }
 
         .modal-content {
@@ -231,14 +229,13 @@
             padding: 30px;
             border: 5px solid var(--dark-text);
             border-radius: 15px;
-            width: 80%;
+            width: 90%;
             max-width: 500px;
             box-shadow: 10px 10px 0px var(--purple);
             text-align: center;
             position: relative;
         }
         
-        /* Estilo específico para o modal de post */
         .post-modal-content {
             max-width: 800px;
             text-align: left;
@@ -343,6 +340,60 @@
             fill: white;
         }
 
+        /* --- AJUSTES PARA TELAS MAIORES (DESKTOP) --- */
+        @media (min-width: 768px) {
+            .container { 
+                flex-direction: row; 
+            }
+        }
+
+        /* --- AJUSTES PARA TELAS MENORES (CELULAR) --- */
+        @media (max-width: 767px) {
+            .main-header {
+                padding: 30px 10px;
+            }
+            .logo-image {
+                width: 300px;
+            }
+            .post-title {
+                font-size: 2rem;
+            }
+            .post-content {
+                padding: 1rem 1.5rem;
+            }
+            .post-card, .sidebar-widget {
+                box-shadow: 7px 7px 0px var(--purple);
+            }
+            .widget-about {
+                 box-shadow: 7px 7px 0px var(--orange);
+            }
+            .widget-categories {
+                 box-shadow: 7px 7px 0px var(--hot-pink);
+            }
+            .widget-question {
+                 box-shadow: 7px 7px 0px var(--ocean-blue);
+            }
+            #postModalTitle {
+                font-size: 2.2rem;
+            }
+            .post-modal-content {
+                padding: 1.5rem;
+            }
+            #postModalImage {
+                height: 200px;
+            }
+            #postModalContent {
+                font-size: 1.1rem;
+            }
+            .main-footer h2 {
+                font-size: 2rem;
+            }
+            .instagram-btn {
+                font-size: 1.2rem;
+                padding: 12px 20px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -350,9 +401,10 @@
     <!-- CABEÇALHO COM A LOGO -->
     <header class="main-header">
         <div class="logo-container">
-          <img class="logo-image" src="logo.png" alt="Logo Alpha Z">
+            <img class="logo-image" src="logo.png" alt="Logo Alpha Z">
         </div>
     </header>
+
     <!-- PÁGINA PRINCIPAL -->
     <div id="main-page">
         <div class="container">
@@ -403,7 +455,7 @@
                 </div>
                 <div class="sidebar-widget widget-question">
                     <h3 class="widget-title">TEM ALGUMA PERGUNTA?</h3>
-                    <form class="question-form" onsubmit="submitForm(event)">
+                    <form class="question-form" action="https://formspree.io/f/xxxxxxxx" method="POST">
                         <p>Mande sua dúvida pra gente!</p>
                         <textarea name="pergunta" placeholder="Escreva sua pergunta aqui..." required></textarea>
                         <button type="submit">ENVIAR</button>
@@ -495,8 +547,9 @@
             document.getElementById(modalId).style.display = 'none';
         }
         
-        // Função do Formulário de Perguntas
+        // --- Função do Formulário de Perguntas ---
         function submitForm(event) {
+            // Esta função não será mais usada se você implementar o Formspree
             event.preventDefault(); 
             const textarea = event.target.querySelector('textarea');
             if (textarea.value.trim() !== '') {
